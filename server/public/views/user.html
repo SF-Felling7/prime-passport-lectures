@@ -1,5 +1,8 @@
 <div class="container">
     <h1 id="welcome" class="lead">Welcome, {{uc.userName}}!</h1>
     <p>This is the user page!</p>
+    <input type="text" ng-model="uc.description" >
+    <input type="text" ng-model="uc.imgUrl" >
+    <button class="btn btn-default" ng-click="uc.addItem()">Add Item</button>
     <button class="btn btn-default" ng-click="uc.logout()">Log Out</button>
 </div>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var path = require('path');
+var item = require('../models/item_model');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -17,6 +18,14 @@ router.get('/', function(req, res) {
     // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
     res.send(false);
   }
+});
+
+router.post('/', function (req, res){
+  console.log('saving item', req.body);
+  var itemObj = item(req.body);
+  itemObj.save().then(function(){
+    res.sendStatus(201);
+  });
 });
 
 // clear all server session information about this user
