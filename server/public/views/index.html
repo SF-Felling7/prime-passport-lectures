@@ -8,6 +8,7 @@
         <script type="text/javascript" src="/vendors/angular.min.js"></script>
         <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/clientapp.js"></script>
+        <script src="./assets/scripts/getService.js" type="text/javascript"></script>
         <script type="text/javascript" src="/assets/scripts/controllers/login.controller.js"></script>
         <script type="text/javascript" src="/assets/scripts/controllers/user.controller.js"></script>
         <!-- <base href="/" /> -->
@@ -17,6 +18,13 @@
       <header ng-include="'/views/templates/header.html'"></header>
 
       <main ng-view></main>
+      <div ng-controller="shelfController as sc" >
+        <div ng-repeat="item in sc.shelf">
+          {{item.description}}
+          <img ng-src="{{item.imgUrl}}">
+
+        </div>
+      </div>
 
     </body>
 </html>

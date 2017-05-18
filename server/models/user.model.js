@@ -7,12 +7,13 @@ var SALT_WORK_FACTOR = 10;
 
 // Mongoose Schema
 var UserSchema = new Schema({
-    username: {type: String, required: true, index: {unique: true}, ref: item},
-    password: {type: String, required: true}
+    username: {type: String, required: true, index: {unique: true}},
+    password: {type: String, required: true},
 });
 
 // Called before adding a new user to the DB. Encrypts password.
 UserSchema.pre('save', function(next) {
+  console.log( 'inside user pre' );
     var user = this;
 
     if(!user.isModified('password')) {
@@ -31,8 +32,8 @@ UserSchema.pre('save', function(next) {
 
             user.password = hash;
             next();
-        })
-    })
+        });
+    });
 });
 
 // Used by login methods to compare login form password to DB password

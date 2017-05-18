@@ -1,4 +1,4 @@
-myApp.controller('UserController', ['$http', '$location', function($http, $location) {
+myApp.controller('UserController', ['$http', '$location', 'GetItem', function($http, $location, GetItem) {
   // This happens after view/controller loads -- not ideal but it works for now.
   var vm = this;
 
@@ -32,12 +32,22 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
   }).then(function success(response){
     console.log( 'res:', response);
   });
+
 };
+
+vm.getAll = function(){
+  GetItem.getItem().then(function(response){
+    vm.shelf = response;
+});
+};
+
+vm.getAll();
+
 
   vm.logout = function() {
     $http.get('/user/logout').then(function(response) {
       console.log('logged out');
       $location.path("/home");
     });
-  }
+  };
 }]);

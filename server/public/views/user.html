@@ -3,6 +3,6 @@
     <p>This is the user page!</p>
     <input type="text" ng-model="uc.description" >
     <input type="text" ng-model="uc.imgUrl" >
-    <button class="btn btn-default" ng-click="uc.addItem()">Add Item</button>
+    <button class="btn btn-default" ng-click="uc.addItem(); uc.getAll()">Add Item</button>
     <button class="btn btn-default" ng-click="uc.logout()">Log Out</button>
 </div>

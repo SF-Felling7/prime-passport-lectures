@@ -23,8 +23,16 @@ router.get('/', function(req, res) {
 router.post('/', function (req, res){
   console.log('saving item', req.body);
   var itemObj = item(req.body);
-  itemObj.save().then(function(){
-    res.sendStatus(201);
+  itemObj.save(function(err, response){
+    if (err) {
+      console.log( 'problem', err );
+      res.sendStatus( 500 );
+    }
+    else {
+      console.log( 'working', response );
+      res.sendStatus(201);
+    }
+
   });
 });
 

@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
+var item = require( '../server/models/item_model');
 
 var passport = require('./strategies/user.strategy');
 var session = require('express-session');
@@ -35,7 +36,23 @@ app.use(passport.session());
 // Routes
 app.use('/register', register);
 app.use('/user', user);
+app.get( '/showItems', function( req, res ) {
+  console.log( 'hit showitems route');
+  item.find(req.body, function( err, data) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      console.log(data);
+      res.send(data);
+    }
+  });
+});
+
 app.use('/*', index);
+
+
+
 
 // Mongo Connection //
 var mongoURI = '';
@@ -62,6 +79,9 @@ mongoDB.on('error', function(err){
 mongoDB.once('open', function(){
    console.log("Connected to Mongo, meow!");
 });
+
+//SHOWITEMS
+
 
 // App Set //
 app.set('port', (process.env.PORT || 5000));

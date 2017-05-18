@@ -23,3 +23,16 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     });
 
 }]);
+
+myApp.controller( 'shelfController', function(GetItem) {
+  var vm = this;
+
+  vm.shelf = [];
+  vm.getAll = function(){
+    GetItem.getItem().then(function(response){
+      vm.shelf = response;
+  });
+};
+  vm.getAll();
+
+});

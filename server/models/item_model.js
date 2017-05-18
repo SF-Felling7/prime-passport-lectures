@@ -4,9 +4,10 @@ var Schema = mongoose.Schema;
 
 
 var itemSchema = new Schema({
-    username: {type: String, required: true, index: {unique: true}, ref: User},
+    username: {type: String, required: true},
     description: {type: String, required: true},
-    imgUrl: {type: String, required: true}
+    imgUrl: {type: String, required: true},
+
 });
 
 var item = mongoose.model('item', itemSchema);
